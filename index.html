@@ -36,11 +36,18 @@
           </div>
           <div class="col-xs-8">
             <h2>{{entry.stream.channel.display_name || entry.display_name}}</h2>
-            <div>Details</div>
+            <div ng-show="entry.stream.channel.status">
+              <p><em>{{entry.stream.channel.game}}</em></p>
+            </div>
           </div>
-          <div class="col-xs-2" ng-show="entry.stream.channel.status">
+          <div class="col-xs-2" ng-show="entry.stream">
             <a href="{{entry.stream.channel.url}}">
               <button class="btn btn-success">online</button>
+            </a>
+          </div>
+          <div class="col-xs-2" ng-show="entry.stream == null">
+            <a href="{{entry.url}}">
+              <button class="btn btn-danger">offline</button>
             </a>
           </div>
         </div>

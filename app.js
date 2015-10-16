@@ -10,9 +10,7 @@
     "thomasballinger",
     "noobs2ninjas",
     "medrybw",
-    "beohoff"/*, 
-    "brunofin",
-    "comster404"*/
+    "beohoff"
   ];
 
   var url = 'https://api.twitch.tv/kraken/'
