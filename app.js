@@ -15,7 +15,7 @@
 
   var url = 'https://api.twitch.tv/kraken/'
 
-  app.controller('TabController', ['$scope', '$http', function($scope, $http) {
+  app.controller('MainController', ['$scope', '$http', function($scope, $http) {
 
     $scope.entries = [];
     $scope.online = [];

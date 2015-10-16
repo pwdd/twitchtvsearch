@@ -7,18 +7,18 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body ng-app="fccapp">
+<body ng-app="fccapp" ng-controller="MainController">
   <div class="container text-center">
     <form class="form-inline">
       <div class="form-group">
         <div class="input-group">
-          <input type="text" class="form-control" id="exampleInputAmount" placeholder="Search streamings">
+          <input ng-model="searchBox" type="text" class="form-control" id="exampleInputAmount" placeholder="Search streamings">
           <div class="input-group-addon"><span class="fa fa-search"></span></div>
         </div>
       </div>
     </form>
     
-    <section class="tab" ng-controller="TabController">
+    <section class="tab">
       
       <ul class="nav nav-tabs">
         <li ng-class="{ active: isSet(1) }">
@@ -30,7 +30,7 @@
       </ul>
       {{tab}}
       <div ng-show="isSet(1)">
-        <div class="row each-streamer" ng-repeat="entry in entries">
+        <div class="row each-streamer" ng-repeat="entry in entries | filter: searchBox">
           <div class="col-xs-2">
             <img class="img-responsive" ng-src="{{entry.stream.channel.logo || entry.logo}}">
           </div>
@@ -54,7 +54,7 @@
       </div>
       
       <div ng-show="isSet(2)">
-        <div class="row each-streamer" ng-repeat="on in online">
+        <div class="row each-streamer" ng-repeat="on in online | filter: searchBox">
           <div class="col-xs-2">
             <img class="img-responsive" ng-src="{{on.stream.channel.logo}}">
           </div>
@@ -73,7 +73,7 @@
       </div>
       
       <div ng-show="isSet(3)">
-        <div class="row each-streamer" ng-repeat="off in offline">
+        <div class="row each-streamer" ng-repeat="off in offline | filter: searchBox">
           <div class="col-xs-2">
             <img class="img-responsive" ng-src="{{off.logo}}">
           </div>
