@@ -28,7 +28,6 @@
         <li ng-class="{ active: isSet(3) }">
           <a href ng-click="setTab(3)">Offline</a></li>
       </ul>
-      {{tab}}
       <div ng-show="isSet(1)">
         <div class="row each-streamer" ng-repeat="entry in entries | filter: searchBox">
           <div class="col-xs-2">
