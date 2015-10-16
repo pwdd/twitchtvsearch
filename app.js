@@ -15,16 +15,27 @@
     "comster404"*/
   ];
 
-  var url = 'https://api.twitch.tv/kraken/streams/'
+  var url = 'https://api.twitch.tv/kraken/'
 
   app.controller('TabController', ['$scope', '$http', function($scope, $http) {
 
     $scope.entries = [];
+    $scope.online = [];
+    $scope.offline = [];
     
     streammers.forEach(function(name) {
-      $http.jsonp(url + name + "?callback=JSON_CALLBACK")
+      $http.jsonp(url + "streams/" + name + "?callback=JSON_CALLBACK")
       .success(function(response) {
-        $scope.entries.push(angular.extend(response));
+        if (response.stream !== null) {
+          $scope.entries.push(angular.extend(response));
+          $scope.online.push(angular.extend(response))
+        } else{
+          $http.jsonp(url + "channels/" + name + "?callback=JSON_CALLBACK")
+          .success(function(data) {
+            $scope.entries.push(angular.extend(data));
+            $scope.offline.push(angular.extend(data));
+          });
+        };
       })
       .error(function(response) {
         $scope.entries.push(angular.extend(response));

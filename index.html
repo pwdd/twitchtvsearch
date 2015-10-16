@@ -12,7 +12,7 @@
     <form class="form-inline">
       <div class="form-group">
         <div class="input-group">
-          <input type="text" class="form-control" id="exampleInputAmount" placeholder="Search streammings">
+          <input type="text" class="form-control" id="exampleInputAmount" placeholder="Search streamings">
           <div class="input-group-addon"><span class="fa fa-search"></span></div>
         </div>
       </div>
@@ -30,13 +30,18 @@
       </ul>
       {{tab}}
       <div ng-show="isSet(1)">
-        <div class="row" ng-repeat="entry in entries">
+        <div class="row each-streamer" ng-repeat="entry in entries">
           <div class="col-xs-2">
-            <img class="img-responsive" ng-src="{{entry.stream.channel.logo}}">
+            <img class="img-responsive" ng-src="{{entry.stream.channel.logo || entry.logo}}">
           </div>
           <div class="col-xs-8">
-            <div>{{entry.stream.channel.display_name}}</div>
+            <h2>{{entry.stream.channel.display_name || entry.display_name}}</h2>
             <div>Details</div>
+          </div>
+          <div class="col-xs-2" ng-show="entry.stream.channel.status">
+            <a href="{{entry.stream.channel.url}}">
+              <button class="btn btn-success">online</button>
+            </a>
           </div>
         </div>
       </div>
